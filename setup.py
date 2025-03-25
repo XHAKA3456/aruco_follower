@@ -16,6 +16,8 @@ setup(
     entry_points={
         'console_scripts': [
             'aruco_follower = aruco_follower.aruco_follower:main',
+            'aruco_detector = aruco_follower.aruco_detector:main',
+            'image_publisher = aruco_follower.image_publisher:main',
         ],
     },
 )
