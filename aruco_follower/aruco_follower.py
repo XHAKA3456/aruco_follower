@@ -9,14 +9,14 @@ class ArucoFollower(Node):
     def __init__(self):
         super().__init__('aruco_follower')
         self.vel_pub = self.create_publisher(Twist, '/cmd_vel_aruco', 10)
-        self.cap = cv2.VideoCapture(2)
+        self.cap = cv2.VideoCapture(0)
 
         if not self.cap.isOpened():
             self.get_logger().error("Error: Could not open video device")
             exit()
 
         self.aruco_dict = aruco.getPredefinedDictionary(aruco.DICT_6X6_250)
-        self.aruco_params = aruco.DetectorParameters()
+        self.aruco_params = cv2.aruco.DetectorParameters_create()
         self.camera_matrix = np.array([[800, 0, 320], [0, 800, 240], [0, 0, 1]], dtype=np.float64)
         self.dist_coeffs = np.zeros((4, 1), dtype=np.float64)
         self.marker_length = 0.08
